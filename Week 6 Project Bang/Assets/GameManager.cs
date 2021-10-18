@@ -19,14 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float ammo;
 
-    [SerializeField]
-    private float enemies;
-
     public static GameManager instance;
 
-    public GameOver GameOverScene;
+    GameOver GameOverScene;
 
-    
+  
+
     void Start()
     {
         if (instance == null)
@@ -45,7 +43,8 @@ public class GameManager : MonoBehaviour
         ammo = 10f;
         healthBar.fillAmount = health / 10f;
         ammoBar.fillAmount = ammo / 10f;
-        enemies = 1.0f;
+        
+        
     }
 
     // Start is called before the first frame update
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
     public void subtractHealth()
     {
         health -= 1;
@@ -82,12 +80,20 @@ public class GameManager : MonoBehaviour
     {
         healthBar.fillAmount = health / 10.0f;
         ammoBar.fillAmount = ammo / 10f;
-        
-        if(health <= 0)
+
+        if (health <= 0)
         {
-          //  Destroy(gameObject);
+            //  Destroy(gameObject);
 
             OnGameOver();
+        }
+
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("target");
+
+        if (targets.Length == 0)
+        {
+
+            endGame();
         }
     }
     public bool HasAmmo()
@@ -95,9 +101,9 @@ public class GameManager : MonoBehaviour
         return ammo > 0f;
     }
 
-   public void OnGameOver()
+    public void OnGameOver()
     {
-       
+
         SceneManager.LoadScene("game over");
     }
 
@@ -112,16 +118,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("main menu");
 
     }
-
-    public void HasKilledEnemy()
+    public void endGame()
     {
-        enemies = -1.0f;
-
-        if(enemies <= 0)
-        {
-            SceneManager.LoadScene("victory");
-        }
+        SceneManager.LoadScene("victory");
     }
+    public void checkTargets()
+    {
+        UpdateHUD();
+    }
+  
 
 }
 

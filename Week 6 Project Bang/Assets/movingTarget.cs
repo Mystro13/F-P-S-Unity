@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movingtargets : MonoBehaviour
+public class movingTarget : MonoBehaviour
 {
     [SerializeField]
     Transform[] targetPoints;
     int targetIndex = 0;
     Transform currenTargetPoint;
-    
+
     [SerializeField]
     float speed;
 
@@ -26,7 +26,7 @@ public class movingtargets : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, currenTargetPoint.position, speed * Time.deltaTime);
 
-        if(Vector3.Distance(transform.position, currenTargetPoint.position) < dist)
+        if (Vector3.Distance(transform.position, currenTargetPoint.position) < dist)
         {
             targetIndex++;
 
@@ -42,3 +42,4 @@ public class movingtargets : MonoBehaviour
         currenTargetPoint = targetPoints[targetIndex];
     }
 }
+

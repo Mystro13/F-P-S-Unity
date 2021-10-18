@@ -18,10 +18,10 @@ public class PlayerPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Mouse X");
-        float y = Input.GetAxis("Mouse Y");
+        //float x = Input.GetAxis("Mouse X");
+        //float y = Input.GetAxis("Mouse Y");
 
-        transform.Rotate(new Vector3(y * rotSpeed, x * rotSpeed, 0));
+        //transform.Rotate(new Vector3(y * rotSpeed, x * rotSpeed, 0));
 
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;

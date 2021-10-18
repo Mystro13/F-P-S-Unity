@@ -30,7 +30,7 @@ public class bullet : MonoBehaviour
         if(collision.gameObject.tag == "target")
         {
             Destroy(collision.gameObject);
-            GameManager.instance.HasKilledEnemy();
+            GameManager.instance.checkTargets();
         }
             
     }
